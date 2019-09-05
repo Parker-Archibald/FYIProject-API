@@ -1,17 +1,24 @@
 {
-  "name": "FYIAPI",
+  "name": "fyiapi",
   "version": "1.0.0",
   "description": "",
   "main": "api.js",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongodb": "^3.3.0",
+    "express": "^4.17.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parker-Archibald/FYIProject-API.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Parker-Archibald/FYIProject-API/issues"
+  },
+  "homepage": "https://github.com/Parker-Archibald/FYIProject-API#readme"
 }
