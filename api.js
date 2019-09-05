@@ -13,13 +13,16 @@ app.use(cors());
 
 app.get("/leads", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, function(err, client) {
-    console.log("Connected successfully to server");
+    if(!err) {
     const db = client.db(dbName);
     const collection = db.collection('users');
     collection.find({status: 'potentialClient'}).toArray((err, docs) => {
       client.close();
       res.send(docs);
     });
+  } else {
+    console.log(err);
+  }
   });
 });
 
