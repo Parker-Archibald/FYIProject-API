@@ -37,6 +37,17 @@ app.get("/clients", (req, res) => {
   });
 });
 
+app.get('/single/:name/:ID', (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }, function(err, client) {
+    const db = client.db(dbName);
+    const collection = db.collection('users');
+    collection.find({_id: ObjectId(req.params.ID)}).toArray((err, docs) => {
+      client.close();
+      res.send(docs);
+    });
+  });
+})
+
 app.post("/leads", (req, res) => {
 
     MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }, (err, client) => {
@@ -66,6 +77,16 @@ app.put('/leads/:ID', (req, res) => {
     res.send("Updated");
   });
 });
+
+app.put('/single/:name/:ID', (req, res) => {
+  MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }, (err, client) => {
+    const db = client.db(dbName);
+    const collection = db.collection("users");
+    collection.updateOne({_id: ObjectId(req.params.ID)}, {$set: req.body});
+    client.close();
+    res.send("Updated");
+  })
+})
 
 app.delete("/leads/:ID", (req, res) => {
   MongoClient.connect(url, { useNewUrlParser: true }, { useUnifiedTopology: true }, async (err, client) => {
